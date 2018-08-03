@@ -6,5 +6,12 @@ $(function() {
             $(this).removeClass('curr');
         }
         $(this).next('.submenu').toggle();
-    })
+    });
+    // var url = window.location.href;
+    // var href = url.replace('.html', '/');
+    // console.log(href);
+    // return href;
+    // console.log(url)
+
+
 })
