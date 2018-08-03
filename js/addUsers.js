@@ -114,15 +114,33 @@ $(function() {
             $tel.addClass('is-success');
         }
     })
+    $('#File').change(function() {
+        var _this = $(this).val();
 
-    $('.hdImgLoad').click(function() {
-        var $this = $(this).val();
-        var imgFArr = '.jpg|.jpeg|';
-        var index = img_id.indexOf(".");
-        $this = $this.subString(index);
-
+        var index = _this.indexOf(".");
+        var imgFormat = _this.substring(index);
+        $('.content').append('<div class="alertTxt alerterro" style="display:none;">图片格式只能是jpg格式</div>');
+        if (_this !== '' && imgFormat !== '.jpg') {
+            console.log('///' + _this);
+            $('.alertTxt').css('display', 'block');
+        }
 
     })
+    $('.hdImgLoad').click(function() {
+        $('#File').change(function() {
+            var _this = $(this).val();
+
+            var index = _this.indexOf(".");
+            var imgFormat = _this.substring(index);
+            $('.content').append('<div class="alertTxt alerterro" style="display:none;">图片格式只能是jpg格式</div>');
+            if (_this !== '' && imgFormat !== '.jpg') {
+                console.log('///' + _this);
+                $('.alertTxt').css('display', 'block');
+            }
+
+        })
+    })
+
 
 
     $('#BTN').click(function() {
