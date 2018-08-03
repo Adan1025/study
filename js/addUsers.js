@@ -126,6 +126,7 @@ $(function() {
         }
 
     })
+
     $('.hdImgLoad').click(function() {
         $('#File').change(function() {
             var _this = $(this).val();
@@ -172,4 +173,10 @@ $(function() {
         $('.form_input').removeClass('is-erro is-success');
         $('.form_input').parent().next('.notice').text('');
     })
+
+    //定时器
+    function hide() {
+        $('.alertTxt').hide();
+    }
+    setInterval(hide, 5000);
 })
