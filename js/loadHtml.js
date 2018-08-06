@@ -3,7 +3,7 @@ $(".submenu li").on('click', function() {
 
     $('.container').empty();
     $('.container').load(href + '?t=' + (Date.now()));
-    console.log(href);
+    // console.log(href);
     // $('.container').load(href, function() {
     //     // var script = $('.container').after('<script src="./js/usersList.js"></script>');
     //     var htmlName = href.match(/.*\/([^.]+)\.html$/)[1];
