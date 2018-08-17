@@ -1,22 +1,65 @@
-<form class="form1" action="">
-    <label for="">用户名</label><input type="text" placeholder="用户名"><label for="">邮箱</label><input type="text" placeholder="邮箱"><input type="button" value="查询">
-</form>
-<div class="content">
-    <div class="content-div"><input type="button" value="查看角色"><input type="button" value="新增角色"></div>
-    <table class="table">
-        <thead>
-            <th width="5%">#</th>
-            <th width="15%">昵称</th>
-            <th width="10%">角色</th>
-            <th width="22%">邮箱</th>
-            <th width="10%">用户名</th>
-            <th width="12%">联系方式</th>
-            <th width="15%">座右铭</th>
-            <th width="12%">操作</th>
-        </thead>
-        <tbody id="userList">
+<!DOCTYPE html>
+<html lang="en">
 
-        </tbody>
-    </table>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- 头部 -->
+    <header></header>
+    <div class="wrapper clearfix">
+        <div class="wrapper-left">
+            <!-- 加载菜单 -->
+
+        </div>
+        <div class="wrapper-right">
+            <div class="hd-title">
+                <a href="#">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp; 暂未实现
+            </div>
+            <div class="container">
+                <form class="form1" action="">
+                    <label for="">用户名</label><input type="text" placeholder="用户名"><label for="">邮箱</label><input type="text" placeholder="邮箱"><input type="button" value="查询">
+                </form>
+                <div class="content">
+                    <div class="content-div"><input type="button" value="查看角色"><input type="button" value="新增角色"></div>
+                    <table class="table">
+                        <thead>
+                            <th width="5%">#</th>
+                            <th width="15%">昵称</th>
+                            <th width="10%">角色</th>
+                            <th width="22%">邮箱</th>
+                            <th width="10%">用户名</th>
+                            <th width="12%">联系方式</th>
+                            <th width="15%">座右铭</th>
+                            <th width="12%">操作</th>
+                        </thead>
+                        <tbody id="userList">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="../js/jquery.min.js"></script>
 <script src="../js/usersList.js"></script>
+<script src="../js/index.js"></script>
+<script src="../js/loadHtml.js"></script>
+<script src="../js/alertBox.js"></script>
+<script>
+    $(function() {
+        $('.wrapper-left').load('../menu.html');
+    })
+</script>
+
+</html>

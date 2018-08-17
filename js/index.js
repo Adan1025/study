@@ -1,5 +1,5 @@
 $(function() {
-    $('.menu-span').click(function() {
+    $(document).on('click', '.menu-span', function() {
         if (!$(this).hasClass('curr')) {
             $(this).addClass('curr');
         } else {

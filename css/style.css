@@ -169,16 +169,12 @@ header {
     box-sizing: border-box;
 }
 
-.menu-UL {
+.menu-ul {
     border-right: 1px solid #ddd;
 }
 
 .menu-list {
     position: relative;
-}
-
-.menu-list span {
-    display: block;
 }
 
 .menu-span:after {
@@ -201,19 +197,22 @@ header {
 }
 
 .menu-list span,
-.menu-list li {
+.menu-list li a {
+    display: block;
     cursor: pointer;
     height: 50px;
     line-height: 50px;
     padding-left: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .menu-list span:hover,
-.menu-list li:hover {
+.menu-list li a:hover {
     background-color: #daf6fa;
 }
 
-.submenu li {
+.submenu li a {
     padding-left: 40px;
 }
 
@@ -411,7 +410,8 @@ select.is-success {
     color: #f56c6c;
 }
 
-input.b-btn {
+input.b-btn,
+div.b-btn {
     width: initial;
     height: 40px;
     line-height: 40px;
@@ -430,6 +430,12 @@ input.btn {
     cursor: pointer;
     background-color: #fff;
     border: 1px solid #ddd;
+}
+
+div.b-btn {
+    width: 50px;
+    border-radius: 3px;
+    margin: 0 auto;
 }
 
 .b-btn:hover {
@@ -482,4 +488,80 @@ input.btn {
 
 #reImgSrc {
     display: none;
+}
+
+
+/* alertBox */
+
+.hidder {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.alert-box-body {
+    width: 400px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-left: -200px;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.alert-box-title {
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 20px;
+    /* color: #f83; */
+}
+
+.alert-box-msg {
+    text-align: left;
+    font-size: 16px;
+    padding: 20px 0;
+    color: #333;
+    /* border-bottom: 1px solid #e5e5e5; */
+}
+
+.alert-btn-box {
+    overflow: hidden;
+    float: right;
+}
+
+.d-alert-btn-box {
+    cursor: pointer;
+    float: left;
+    width: 60px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 7px 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.d-alert-btn-box:first-child:hover {
+    color: #409EFF;
+    border-color: #c6e2ff;
+    background-color: #ecf5ff;
+}
+
+.d-alert-btn-box:last-child {
+    margin-left: 10px;
+    color: #fff;
+    background-color: #409EFF;
+    border: 1px solid #409EFF;
+}
+
+.d-alert-btn-box:last-child:hover {
+    background: #66b1ff;
+    border-color: #66b1ff;
 }

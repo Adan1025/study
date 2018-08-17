@@ -8,38 +8,14 @@
     <title>管理系统首页</title>
     <link rel="stylesheet" href="./css/iconfont/iconfont.css">
     <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body>
     <header></header>
     <div class="wrapper clearfix">
         <div class="wrapper-left">
-            <ul class="menu-UL">
-                <li class="menu-list">
-                    <span class="menu-span"><i class="iconfont icon-yonghu"></i>用户中心</span>
-                    <ul class="submenu">
-                        <li data-href="../users/usersList.html">用户管理</li>
-                        <li data-href="../users/addUsers.html">用户添加</li>
-                    </ul>
-                </li>
-                <li class="menu-list">
-                    <span class="menu-span"><i class="iconfont icon-buchongiconsvg15"></i>权限中心</span>
-                    <ul class="submenu">
-                        <li>菜单管理</li>
-                        <li>接口管理</li>
-                    </ul>
-                </li>
-                <li class="menu-list">
-                    <span class="menu-span"><i class="iconfont icon-wenzhang"></i>文章中心</span>
-                    <ul class="submenu">
-                        <li>文章管理</li>
-                        <li>文章发布</li>
-                    </ul>
-                </li>
-                <li class="menu-list">
-                    <span class="menu-span"><i class="iconfont icon-tuichu"></i>退出</span>
-                </li>
-            </ul>
+
         </div>
         <div class="wrapper-right">
             <div class="hd-title">
@@ -51,8 +27,15 @@
         </div>
     </div>
     <script src="./js/jquery.min.js"></script>
+
     <script src="./js/index.js"></script>
     <script src="./js/loadHtml.js"></script>
+    <script src="./js/alertBox.js"></script>
+    <script>
+        $(function() {
+            $('.wrapper-left').load('./menu.html');
+        })
+    </script>
 </body>
 
 </html>
