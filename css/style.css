@@ -220,9 +220,9 @@ header {
     display: none;
 }
 
-.is-active {
+.is-active a {
     color: #409EFF;
-    background-color: #ecf5ff;
+    /* background-color: #ecf5ff; */
 }
 
 .hd-title {
@@ -433,9 +433,10 @@ input.btn {
 }
 
 div.b-btn {
-    width: 50px;
+    width: 65px;
     border-radius: 3px;
     margin: 0 auto;
+    padding: 0 10px;
 }
 
 .b-btn:hover {
@@ -462,16 +463,19 @@ div.b-btn {
     border-color: #409EFF;
 }
 
-.upload:after {
-    content: '+';
+.icon-add {
     position: absolute;
     margin: auto;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    font-size: 14px;
     cursor: pointer;
+}
+
+.icon-add i {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .upload input {

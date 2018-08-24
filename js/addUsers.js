@@ -1,4 +1,26 @@
 $(function() {
+    var fLoadImg = function() {
+        $.ajaxFileUpload({
+            type: "POST",
+            url: "/manage/picture/upload",
+            secureuri: false, //是否启用安全提交，默认为false
+            fileElementId: 'file', //文件选择框的id属性
+            dataType: 'json', //服务器返回的格式
+            async: false,
+            success: function(data) {
+                bindChange();
+                if (data.status == 1) {
+                    var obj = data.results;
+                    $('#reImgSrc').attr('src', obj);
+                    $('.icon-add').hide();
+                    $('#reImgSrc').show();
+                } else {
+                    myAlert(data.errmsg);
+                }
+            },
+        });
+
+    };
     var comFn = {
         tips: function(elment, msg, reg) {
             var $this_val = elment.val();
@@ -38,7 +60,7 @@ $(function() {
         $pwd = $('#Pwd'),
         $role = $('#Role'),
         $userName = $('#userName'),
-        $tel = $('#Tel');
+        $tel = $('#tel');
 
 
     $email.on('keyup', function() {
@@ -111,22 +133,27 @@ $(function() {
     $tel.blur(function() {
         comFn.seBrCheck($(this));
     })
-    $('#file').change(function() {
-        var _this = $(this).val();
 
-        var index = _this.indexOf(".");
-        var imgFormat = _this.substring(index);
-        if ($('.alertTxt').length == 0) {
-            $('.content').append('<div class="alertTxt alerterro" style="display:none;">图片格式只能是jpg格式</div>');
-        }
-        if (_this !== '' && imgFormat !== '.jpg') {
-            if ($('.alertTxt').length > 0) {
-                $('.alertTxt').css('display', 'block');
-                return;
+    function bindChange() {
+        $('#file').change(function() {
+            var _this = $(this).val();
+
+            var index = _this.indexOf(".");
+            var imgFormat = _this.substring(index);
+            if ($('.alertTxt').length == 0) {
+                $('.content').append('<div class="alertTxt alerterro" style="display:none;">图片格式只能是jpg格式</div>');
             }
-        }
-    })
-
+            if (_this !== '' && imgFormat !== '.jpg') {
+                if ($('.alertTxt').length > 0) {
+                    $('.alertTxt').css('display', 'block');
+                    return;
+                }
+            } else {
+                fLoadImg();
+            }
+        })
+    };
+    bindChange();
     $('#hdImgLoad').click(function() {
         $('#file').click();
     })
@@ -154,29 +181,33 @@ $(function() {
             roleId: $role.val(),
             userName: $userName.val(),
             phone: $tel.val(),
-        }
+        };
+        var data = {
+            id: fGetUserId(id)
+        };
         $.ajax({
-            url: '/manage/users//saveOrUpdate?_r=1534',
+            url: '/manage/users/saveOrUpdate?_r=1534',
             type: 'POST',
             dataType: 'json',
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function(data) {
-                // if (data.status == 0) {
-                //     $('.alertTxt').attr('class', 'alertTxt alerterro').html(data.errmsg).show();
-                // }
-
                 if (data.status == 1) {
-                    console.log(href)
-                    $('.container').empty();
-                    $('.container').load(href);
+                    // console.log(href)
+                    // $('.container').empty();
+                    // $('.container').load(href);
+                    window.location.href = '../usersList'
+                } else {
+                    console.log(data.errmsg);
+                    warnAlert(data.errmsg);
+                    // $('.alertTxt').attr('class', 'alertTxt alerterro').html(data.errmsg).show();
                 }
 
 
             },
 
         })
-    })
+    });
     var getQueryString = function(name) { //name为传入参数
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var r = window.location.search.substr(1).match(reg);
@@ -194,16 +225,21 @@ $(function() {
             success: function(data) {
                 var obj = data.results;
                 if (data.status == 1) {
-
+                    $('#BTN').val('确认修改');
                     $('#Email').val(obj.email);
                     $('#reImgSrc').val(obj.headimg);
                     //  $('#Email').val(obj.metto);
                     $('#nickName').val(obj.nickName);
                     $('#Pwd').val(obj.password);
-                    $('#Tel').val(obj.phone);
+                    $('#tel').val(obj.phone);
                     $('#Role').val(obj.roleId);
                     //  $('#Email').val(obj.roleName);
                     $('#userName').val(obj.userName);
+                    if (obj.headimg) {
+                        $('#reImgSrc').attr('src', obj.headimg);
+                        $('#reImgSrc').show();
+                        $('.icon-add').hide();
+                    }
                 }
             }
         });
@@ -213,7 +249,10 @@ $(function() {
         $('.form_input').val('');
         $('.form_input').removeClass('is-erro is-success');
         $('.form_input').parent().next('.notice').text('');
-    })
+    });
+    // $('#BTN').click(function() {
+    //     window.location.href = './usersList.html';
+    // })
 
     //定时器
     function hide() {

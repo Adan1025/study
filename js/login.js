@@ -1,4 +1,5 @@
 $(function() {
+    // errAlert('dddd')
     $('#loginContent').after('<div class="alertTxt" style="display:none;"></div>');
     var txt = ['账号或密码为空！', '账号或密码不正确！', '操作成功！'];
     $('#LOGIN').click(function() {
@@ -39,9 +40,7 @@ $(function() {
                     $('.alertTxt').attr('class', 'alertTxt alerterro').html(data.errmsg).show();
                 }
                 if (data.status == 1) {
-                    // keyLogin();
                     window.location.href = "./index.html"
-
                 }
 
             },

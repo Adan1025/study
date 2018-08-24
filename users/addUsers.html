@@ -58,7 +58,7 @@
                             <div class="notice"></div>
                             <div class="d-box">
                                 <label for="">联系方式</label>
-                                <input class="form_input" type="text" id="Tel" placeholder="请输入联系方式">
+                                <input class="form_input" type="text" id="tel" placeholder="请输入联系方式">
                             </div>
                             <div class="notice"></div>
                             <div class="d-box">
@@ -70,8 +70,9 @@
                         </div>
                         <div class="form2-right">
                             <div class="upload">
-                                <input type="file" id="file">
-                                <img id="reImgSrc" src="" alt="">
+                                <input type="file" id="file" name="file">
+                                <img id="reImgSrc" src="" alt="" width="200" height="200">
+                                <div class="icon-add"><i class="iconfont icon-jia"></i></div>
                                 <!-- <input type="text" id="reImgSrc"> -->
                             </div>
                             <div class="b-btn" id="hdImgLoad"><span>上传头像</span></div>
@@ -89,16 +90,11 @@
 
 
     <script src="../js/jquery.min.js"></script>
-    <script src="../js/usersList.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/loadHtml.js"></script>
     <script src="../js/alertBox.js"></script>
     <script src="../js/addUsers.js"></script>
-    <script>
-        $(function() {
-            $('.wrapper-left').load('../menu.html');
-        })
-    </script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
 </body>
 
 </html>
