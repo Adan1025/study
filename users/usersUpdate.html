@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header></header>
+    <div class="wrapper clearfix">
+        <div class="wrapper-left">
+            <!-- 加载菜单 -->
+        </div>
+        <div class="wrapper-right">
+            <div class="hd-title">
+                <a href="#">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp; 暂未实现
+            </div>
+            <div class="container">
+                <div class="content">
+                    <form action="" class="form2">
+                        <div class="form2-left">
+                            <div class="d-box">
+                                <label class="asterisk" for="">电子邮箱</label>
+                                <input class="form_input" type="text" id="Email" placeholder="请输入电子邮箱">
+                            </div>
+                            <div class="notice"></div>
+                            <div class="d-box">
+                                <label class="asterisk" for="">昵称</label>
+                                <input class="form_input" type="text" id="nickName" placeholder="请输入用户昵称，长度2-20个字符">
+                            </div>
+                            <div class="notice"></div>
+                            <div class="d-box">
+                                <label class="asterisk" for="">密码</label>
+                                <input class="form_input" type="password" id="Pwd" placeholder="请输入用户密码">
+                            </div>
+                            <div class="notice"></div>
+                            <div class="d-box">
+                                <label class="asterisk" for="">角色</label>
+                                <span id="Role"></span>
+                            </div>
+                            <div class="notice"></div>
+                            <div class="d-box">
+                                <label for="">用户名</label>
+                                <input class="form_input" type="text" id="userName" placeholder="请输入用户名，长度2-8个字符">
+                            </div>
+                            <div class="notice"></div>
+                            <div class="d-box">
+                                <label for="">联系方式</label>
+                                <input class="form_input" type="text" id="tel" placeholder="请输入联系方式">
+                            </div>
+                            <div class="notice"></div>
+                            <div class="d-box">
+                                <label for="">&nbsp;</label>
+                                <input class="b-btn" data-href="./users/usersList.html" id="BTN" type="button" value="确认修改">
+                                <input class="btn" type="button" id="btnCancle" value="重置">
+                            </div>
+
+                        </div>
+                        <div class="form2-right">
+                            <div class="upload">
+                                <input type="file" id="file" name="file">
+                                <img id="reImgSrc" src="" alt="" width="200" height="200">
+                                <div class="icon-add"><i class="iconfont icon-jia"></i></div>
+                                <!-- <input type="text" id="reImgSrc"> -->
+                            </div>
+                            <div class="b-btn" id="hdImgLoad"><span>上传头像</span></div>
+
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/alertBox.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
+    <script src="../js/usersUpdate.js"></script>
+</body>
+
+</html>
