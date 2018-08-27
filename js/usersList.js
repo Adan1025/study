@@ -38,7 +38,6 @@
                  success: function(data) {
                      if (data.status == 1) {
                          alert('操作成功');
-
                      }
                      if (data.status == 0) {
                          alert(data.errmsg);
