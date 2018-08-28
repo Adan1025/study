@@ -1,10 +1,18 @@
 $(function() {
     var app = {
+        $email: $('#Email'),
+        $nickName: $('#nickName'),
+        $pwd: $('#Pwd'),
+        $role: $('#Role'),
+        $userName: $('#userName'),
+        $tel: $('#tel'),
         init: function() {
             this.fBindEvent();
+            this.fGetUserId();
             this.fBindChange();
         },
         fLoadImg: function() {
+            var self = this;
             $.ajaxFileUpload({
                 type: "POST",
                 url: "/manage/picture/upload",
@@ -13,15 +21,18 @@ $(function() {
                 dataType: 'json', //服务器返回的格式
                 async: false,
                 success: function(data) {
-                    bindChange();
                     if (data.status == 1) {
                         var obj = data.results;
-                        $('#reImgSrc').attr('src', obj);
-                        $('.icon-add').hide();
-                        $('#reImgSrc').show();
+                        if (obj) {
+                            $('#reImgSrc').attr('src', obj);
+                            $('.icon-add').hide();
+                            $('#reImgSrc').show();
+                        }
+
                     } else {
-                        myAlert(data.errmsg);
+                        console.log(data.errmsg);
                     }
+                    self.fBindChange();
                 },
             });
 
@@ -31,13 +42,13 @@ $(function() {
             var url = window.location.href;
             var id = url.match(/\?.*id=([^&]*).*/)[1];
             var data = {
-                email: $('#email').val(),
+                email: $('#Email').val(),
                 nickName: $('#nickName').val(),
-                password: $('#pwd').val(),
-                roleId: $('#role').val(),
+                password: $('#Pwd').val(),
+                roleId: $('#Role').val(),
                 userName: $('#userName').val(),
                 phone: $('#tel').val(),
-                id: id,
+                id: id || 0,
             };
             $.ajax({
                 url: '/manage/users/saveOrUpdate?_r=1534',
@@ -64,7 +75,11 @@ $(function() {
         },
         fGetUserId: function() {
             var self = this;
+
             var id = self.getQueryString("id");
+            var data = {
+                id: id
+            };
             $.ajax({
                 url: '/manage/users/getOneById?id=' + id,
                 type: 'GET',
@@ -84,6 +99,7 @@ $(function() {
                         //  $('#Email').val(obj.roleName);
                         $('#userName').val(obj.userName);
                         if (obj.headimg) {
+
                             $('#reImgSrc').attr('src', obj.headimg);
                             $('#reImgSrc').show();
                             $('.icon-add').hide();
@@ -127,13 +143,7 @@ $(function() {
         },
         fBindEvent: function() {
             var self = this;
-            var $email = $('#Email'),
-                $nickName = $('#nickName'),
-                $pwd = $('#Pwd'),
-                $role = $('#Role'),
-                $userName = $('#userName'),
-                $tel = $('#tel');
-            $email.on('keyup', function() {
+            self.$email.on('keyup', function() {
                 $(this).parent().next('.notice').text('');
                 $(this).removeClass('is-erro');
                 var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
@@ -149,7 +159,7 @@ $(function() {
                 //     }
                 // }
             })
-            $email.blur(function() {
+            self.$email.blur(function() {
                 self.brTips($(this), '电子邮箱不能为空');
                 // if ($email.val() == '') {
                 //     $email.parent().next('.notice').text('电子邮箱不能为空');
@@ -157,31 +167,31 @@ $(function() {
                 // }
 
             });
-            $nickName.on('keyup', function() {
+            self.$nickName.on('keyup', function() {
                 $(this).parent().next('.notice').text('');
                 $(this).removeClass('is-erro');
                 var reg = /^[\u4e00-\u9fa5\w-]{2,20}$/;
                 self.tips($(this), '请输入用户昵称，长度2-20个字符', reg);
 
             })
-            $nickName.blur(function() {
+            self.$nickName.blur(function() {
                 self.brTips($(this), '用户昵称不能为空');
 
 
             })
-            $pwd.on('keyup', function() {
+            self.$pwd.on('keyup', function() {
                 $(this).parent().next('.notice').text('');
                 $(this).removeClass('is-erro');
                 var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
                 self.tips($(this), '请输入密码，数字和字母组合，长度6-16个字符', reg);
 
             })
-            $pwd.blur(function() {
+            self.$pwd.blur(function() {
 
                 self.brTips($(this), '密码不能为空');
 
             })
-            $role.on('change', function() {
+            self.$role.on('change', function() {
                 var $role_val = $role.val();
                 if ($role_val == '0') {
                     $role.parent().next('.notice').text('角色不能为空');
@@ -191,59 +201,39 @@ $(function() {
                     $(this).removeClass('is-erro').addClass('is-success');
                 }
             })
-            $userName.on('keyup', function() {
+            self.$userName.on('keyup', function() {
                 self.seCheck($(this));
             });
-            $userName.blur(function() {
+            self.$userName.blur(function() {
                 self.seBrCheck($(this));
             });
-            $tel.on('keyup', function() {
+            self.$tel.on('keyup', function() {
                 self.seCheck($(this));
             });
-            $tel.blur(function() {
+            self.$tel.blur(function() {
                 self.seBrCheck($(this));
             });
-            this.fGetsaveOrUpdate();
-        },
-        fBindChange: function() {
-            var self = this;
-            $('#file').change(function() {
-                var val = $(this).val();
-
-                var index = val.indexOf(".");
-                var imgFormat = val.substring(index);
-                if ($('.alertTxt').length == 0) {
-                    $('.content').append('<div class="alertTxt alerterro" style="display:none;">图片格式只能是jpg格式</div>');
-                }
-                if (val !== '' && imgFormat !== '.jpg') {
-                    if ($('.alertTxt').length > 0) {
-                        $('.alertTxt').css('display', 'block');
-                        return;
-                    }
-                } else {
-                    self.fLoadImg();
-                }
-            });
+            // this.fGetsaveOrUpdate();
             $('#hdImgLoad').click(function() {
                 $('#file').click();
             });
             $('#BTN').click(function() {
-                self.btnCheck($email, '电子邮箱不能为空');
-                self.btnCheck($nickName, '用户昵称不能为空');
-                self.btnCheck($pwd, '密码不能为空');
+                self.btnCheck(self.$email, '电子邮箱不能为空');
+                self.btnCheck(self.$nickName, '用户昵称不能为空');
+                self.btnCheck(self.$pwd, '密码不能为空');
                 // var href = $(this).attr('data-href')
-                if ($role.val() == '0') {
-                    $role.parent().next('.notice').text('角色不能为空');
-                    $role.removeClass('is-success').addClass('is-erro');
+                if (self.$role.val() == '0') {
+                    self.$role.parent().next('.notice').text('角色不能为空');
+                    self.$role.removeClass('is-success').addClass('is-erro');
                     return;
                 }
-                if ($userName.val() == '') {
-                    $userName.addClass('is-success');
+                if (self.$userName.val() == '') {
+                    self.$userName.addClass('is-success');
                 }
-                if ($tel.val() == '') {
-                    $tel.addClass('is-success');
+                if (self.$tel.val() == '') {
+                    self.$tel.addClass('is-success');
                 }
-                // self.fGetsaveOrUpdate();
+                self.fGetsaveOrUpdate();
 
             });
             $('#btnCancle').click(function() {
@@ -253,20 +243,41 @@ $(function() {
             });
 
         },
+        //改变上传file值
+        fBindChange: function() {
+            var self = this;
+            $('#file').change(function() {
+                var val = $(this).val();
+
+                var index = val.indexOf(".");
+                var imgFormat = val.substring(index);
+                if (val !== '' && imgFormat !== '.jpg') {
+                    errAlert('图片格式只能是jpg格式');
+                } else {
+                    self.fLoadImg();
+                }
+                // if ($('.alertTxt').length == 0) {
+                //     $('.content').append('<div class="alertTxt alerterro" style="display:none;">图片格式只能是jpg格式</div>');
+                // }
+                // if (val !== '' && imgFormat !== '.jpg') {
+                //     if ($('.alertTxt').length > 0) {
+                //         $('.alertTxt').css('display', 'block');
+                //         return;
+                //     }
+                // } else {
+                //     self.fLoadImg();
+                // }
+            });
+
+
+        },
         getQueryString: function(name) { //name为传入参数
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
             var r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]);
             return null;
         },
-        fStartTimerHandle: function() {
-            this.timer = setInterval(function() {
-                $('.alertTxt').hide();
-            }, 3000)
-        },
-        fStopTimerHandle: function() {
-            clearInterval(this.timer);
-        }
+
 
     }
     app.init();
