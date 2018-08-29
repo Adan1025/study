@@ -77,9 +77,9 @@ $(function() {
             var self = this;
 
             var id = self.getQueryString("id");
-            var data = {
-                id: id
-            };
+            // var data = {
+            //     id: id
+            // };
             $.ajax({
                 url: '/manage/users/getOneById?id=' + id,
                 type: 'GET',
