@@ -8,12 +8,19 @@ $(function() {
         $role: $('#Role'),
         $userName: $('#userName'),
         $tel: $('#tel'),
+        $file: $('#file'),
+        id: null,
+        roleId: null,
+        metto: null,
+        isConfirm: false,
         init: function() {
             this.fGetUserInfo();
             this.fBindEvent();
             this.fBindChange();
         },
+
         fGetUserInfo: function() {
+            var self = this;
             $.ajax({
                 url: '/manage/users/getOneByLogin?id=0&_r=1534994173190',
                 type: 'GET',
@@ -22,6 +29,9 @@ $(function() {
                 success: function(data) {
                     var obj = data.results;
                     if (data.status == 1) {
+                        self.id = obj.id;
+                        self.roleId = obj.roleId;
+                        self.metto = obj.metto;
                         $('#Email').val(obj.email);
                         $('#nickName').val(obj.nickName);
                         $('#Pwd').val(obj.password);
@@ -33,6 +43,7 @@ $(function() {
                             $('.icon-add').hide();
                             $('#reImgSrc').show();
                         }
+                        self.isConfirm = true;
 
                     }
                 }
@@ -61,6 +72,35 @@ $(function() {
                 },
             });
 
+        },
+        fUpdateUserInfo: function() {
+            var self = this;
+            var data = {
+                email: self.$email.val(),
+                headimg: self.$file.val(),
+                nickName: self.$nickName.val(),
+                password: self.$pwd.val(),
+                role: self.$role.text(),
+                userName: self.$userName.val(),
+                phone: self.$tel.val(),
+                id: self.id,
+                metto: self.metto,
+                roleId: self.roleId,
+
+            };
+            $.ajax({
+                url: '/manage/users/updateLoginUsers?_r=1535591953205',
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function(data) {
+                    if (data.status == 1) {
+                        window.location.href = '../index.html'
+                    }
+                }
+
+            })
         },
         tips: function(elment, msg, reg) {
             var $this_val = elment.val();
@@ -92,6 +132,7 @@ $(function() {
             if (elment.val() == '') {
                 elment.parent().next('.notice').text(msg);
                 elment.addClass('is-erro');
+                this.isConfirm = false;
             }
 
         },
@@ -187,7 +228,12 @@ $(function() {
                 if (self.$tel.val() == '') {
                     self.$tel.addClass('is-success');
                 }
+                if (self.isConfirm == true) {
+                    console.log('111111');
+                    self.fUpdateUserInfo();
+                }
                 // self.fGetsaveOrUpdate();
+                // window.location.href = "../index.html"
 
             });
             $('#btnCancle').click(function() {
