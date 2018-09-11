@@ -314,7 +314,7 @@ header {
     background-color: #ecf5ff;
 }
 
-#userList td button {
+.table-tr-bg td button {
     border: 1px solid #ddd;
     padding: 5px 8px;
     border-radius: 3px;
@@ -327,7 +327,7 @@ header {
     font-size: 14px;
 }
 
-#userList td .delete {
+.table-tr-bg td .delete {
     border-color: #f56c6c;
     padding: 5px 8px;
     background-color: #f56c6c;
@@ -336,12 +336,12 @@ header {
     color: #fff;
 }
 
-#userList td .delete:hover {
-    border-color: #f56c6c;
-    background-color: #f56c6c;
+.table-tr-bg td .delete:hover {
+    border-color: #f78989;
+    background-color: #f78989;
 }
 
-#userList td .edit:hover {
+.table-tr-bg td .edit:hover {
     background-color: #ecf5ff;
     color: #409EFF;
     border-color: #c6e2ff;
@@ -573,7 +573,9 @@ div.b-btn {
 
 /* 弹层 */
 .modal-dialog{
-    position: absolute;
+    display: none;
+    position: fixed;
+    overflow:auto;
     z-index:888;
     width:100%;
     height:100%;
@@ -583,12 +585,11 @@ div.b-btn {
     right:0;
     background:rgba(204,204,204,0.9);
 }
-.modal-content{
+.modal-box{
     width:500px;
     padding:20px;
     background-color:#fff;
-    margin:0 auto;
-    margin-top:20%;
+    margin:100px auto;
 }
 .modal-header{
     overflow: hidden;
