@@ -586,6 +586,7 @@ div.b-btn {
     background:rgba(204,204,204,0.9);
 }
 .modal-box{
+    overflow: hidden;
     width:500px;
     padding:20px;
     background-color:#fff;
@@ -608,4 +609,24 @@ div.b-btn {
 }
 .modal-content .table th,.modal-content .table td{
     text-align: center;
+}
+.modal-footer{
+    overflow:hidden;
+    margin-top:30px;
+    float:right;
+}
+.modal-footer .modal-btn{
+    width: 80px;
+    margin-left:15px;
+    height:40px;
+    line-height:40px;
+    background-color: #61ade7;
+    cursor:pointer;
+    text-align: center;
+    color: #fff;
+    float: left;
+    border-radius:3px;
+}
+.modal-footer .modal-btn:hover{
+    background-color:#4eb1f3;
 }

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- 头部 -->
+    <header></header>
+    <div class="wrapper clearfix">
+        <div class="wrapper-left">
+            <!-- 加载菜单 -->
+
+        </div>
+        <div class="wrapper-right">
+            <div class="hd-title">
+                <a href="#">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp; 暂未实现
+            </div>
+            <div class="container">
+                <form class="form1" action="">
+                    <label for="">标题</label><input type="text" placeholder="标题"><input type="button" value="查询">
+                </form>
+                <div class="content">
+                    <div class="content-div"><input type="button" id="artTypeBtn" value="查看类型"><input id="addType" type="button" value="新增类型"></div>
+                    <table class="table">
+                        <thead>
+                            <th width="5%">#</th>
+                            <th width="15%">标题</th>
+                            <th width="10%">分类</th>
+                            <th width="22%">类型</th>
+                            <th width="10%">发布时间</th>
+                            <th width="12%">操作</th>
+                        </thead>
+                        <tbody id="articleList">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="modal-dialog">
+        <div class="modal-box">
+            <div class="modal-header">
+                    <h3>查看类型</h3>
+                    <span class="close" id="close"><i class="iconfont icon-guanbi"></i></span>
+            </div>
+            <div class="modal-content">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>分类名称</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="artTypeCont" class="table-tr-bg">
+
+                </tbody>
+                </table>
+            </div>
+        </div>
+       
+    </div> -->
+
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/index.js"></script>
+<script src="../js/alertBox.js"></script>
+<script src="../js/menu.js"></script>
+<script src="../common/js/underscore-min.js"></script>
+<script src="../common/template/dialogBox.js"></script>
+<script src="../js/articleList.js"></script>
+<script type="text/template" id="moduleCell">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>分类名称</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody id="artTypeCont" class="table-tr-bg">
+ <% for (var i = 0; i < arr.length; i++) { %>
+    <!-- 包含js代码 -->
+     <% var item = arr[i] %>
+      <tr>
+          <!-- 输出数据 是变量 属性或者函数调用 -->
+          <td><%=i+1%></td>
+          <td><%=item.name%></td>
+          <td>
+              <button type="button" class="edit"  data-id="<%=item.id%>">
+                <i class="iconfont icon-bianji"></i>
+            </button>
+            <button  class="delete" data-id="<%=item.id%>">删除</button>
+        </td>
+          <!-- <td><%=item.city%></td> -->
+      </tr>
+      <% } %>
+      
+    </tbody>
+</table>
+</script>
+<!-- <script>
+    var element = $('#artTypeCont'),
+        moduleCell = $('#moduleCell').html(); 
+
+    var data = {
+        arr: [
+            {id:'1',name:'yin',city:'Shanghai'},
+            {id:'2',name:'san',city:'Changsha'},
+            {id:'3',name:'Lee',city:'Beijing'}, {id:'1',name:'yin',city:'Shanghai'},
+            {id:'2',name:'san',city:'Changsha'},
+            {id:'3',name:'Lee',city:'Beijing'}
+        ]
+    };
+
+    // 解析模板，返回解析后的内容
+    var render = _.template(moduleCell);
+    var html = render(data);
+    
+    // 将解析后的内容填充到渲染元素
+    element.html(html);
+</script> -->
+
+</html>
